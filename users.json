@@ -1,0 +1,10 @@
+{
+    "sourav": {
+        "password": "123456",
+        "email": "mail.souravprakash@gmail.com"
+    },
+    "ADMIN": {
+        "password": "ADMIN12345",
+        "email": "souravprakashvichu@gmail.com"
+    }
+}
