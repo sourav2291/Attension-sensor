@@ -6,7 +6,13 @@ import random
 import subprocess
 import sys
 
-USERS_FILE = "users.json"
+# ---------------- RESOURCE PATH (VERY IMPORTANT) ----------------
+def resource_path(filename):
+    if hasattr(sys, "_MEIPASS"):
+        return os.path.join(sys._MEIPASS, filename)
+    return os.path.join(os.path.dirname(__file__), filename)
+
+USERS_FILE = resource_path("users.json")
 
 # ---------------- USER DATA HELPERS ----------------
 def load_users():
@@ -157,7 +163,13 @@ def login():
 
         if username in users and users[username]["password"] == password:
             root.destroy()
-            subprocess.Popen([sys.executable, "attension_sensor.py", username])
+
+            # ✅ RUN ATTENTION SENSOR EXE
+            sensor_exe = resource_path("AttentionSensor.exe")
+
+            subprocess.Popen([sensor_exe, username])
+            sys.exit(0)
+
         else:
             messagebox.showerror("Login Failed", "Invalid Username or Password")
 
